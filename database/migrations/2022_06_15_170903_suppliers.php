@@ -13,7 +13,14 @@ class Suppliers extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('suppliers', function (Blueprint $table) {
+            $table->id('id_supplier');
+            $table->string('name_supplier');
+            $table->string('seller_supplier');
+            $table->string('city_supplier');
+            $table->integer('contact_supplier');
+            $table->integer('status_supplier');
+        });
     }
 
     /**
@@ -23,6 +30,6 @@ class Suppliers extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('suppliers');
     }
 }

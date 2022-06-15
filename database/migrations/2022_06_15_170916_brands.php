@@ -13,7 +13,13 @@ class Brands extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('brands', function (Blueprint $table) {
+            $table->id('id_brand');
+            $table->unsignedBigInteger('id_supplier');
+            $table->string('name_brand');
+            $table->boolean('status_brand');
+            $table->foreign('id_supplier')->references('id_supplier')->on('suppliers')->onDelete('cascade');
+        });
     }
 
     /**
@@ -23,6 +29,6 @@ class Brands extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('brands');
     }
 }

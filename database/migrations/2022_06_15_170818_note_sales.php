@@ -13,7 +13,16 @@ class NoteSales extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('note_sales', function (Blueprint $table) {
+            $table->id('id_note_sale');
+            $table->unsignedBigInteger('id_client');
+            $table->unsignedBigInteger('id_user');
+            $table->datetime('date_note');
+            $table->boolean('state_note');
+            $table->float('total_import_note');
+            $table->foreign('id_client')->references('id_client')->on('clients')->onDelete('cascade');
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+        });
     }
 
     /**
@@ -23,6 +32,6 @@ class NoteSales extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('note_sales');
     }
 }

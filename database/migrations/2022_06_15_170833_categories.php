@@ -13,7 +13,12 @@ class Categories extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id('id_category');
+            $table->string('name_category');
+            $table->text('description_category');
+            $table->boolean('state_category');
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class Categories extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('categories');
     }
 }
