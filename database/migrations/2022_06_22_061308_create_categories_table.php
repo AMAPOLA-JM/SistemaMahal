@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Categories extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,6 +18,7 @@ class Categories extends Migration
             $table->string('name_category');
             $table->text('description_category');
             $table->boolean('state_category');
+            $table->timestamps();
         });
     }
 

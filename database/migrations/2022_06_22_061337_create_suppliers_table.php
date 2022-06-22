@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Suppliers extends Migration
+class CreateSuppliersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -20,6 +20,7 @@ class Suppliers extends Migration
             $table->string('city_supplier');
             $table->integer('contact_supplier');
             $table->integer('status_supplier');
+            $table->timestamps();
         });
     }
 

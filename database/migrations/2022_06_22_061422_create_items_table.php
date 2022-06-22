@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Items extends Migration
+class CreateItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -22,6 +22,7 @@ class Items extends Migration
             $table->double('unit_price_item');
             $table->double('wholesale_price_item');
             $table->text('description_item');
+            $table->timestamps();
             $table->foreign('id_category')->references('id_category')->on('categories')->onDelete('cascade');
             $table->foreign('id_brand')->references('id_brand')->on('brands')->onDelete('cascade');
         });
