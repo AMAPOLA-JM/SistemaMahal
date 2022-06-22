@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class NoteDetails extends Migration
+class CreateNoteDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -19,6 +19,7 @@ class NoteDetails extends Migration
             $table->unsignedBigInteger('id_item');
             $table->float('quantity_note_detail');
             $table->float('total_price_note_detail');
+            $table->timestamps();
             $table->foreign('id_note_sale')->references('id_note_sale')->on('note_sales')->onDelete('cascade');
             $table->foreign('id_item')->references('id_item')->on('items')->onDelete('cascade');
         });
