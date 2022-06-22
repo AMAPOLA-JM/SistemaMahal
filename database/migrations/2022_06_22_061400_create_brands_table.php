@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Incomings extends Migration
+class CreateBrandsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class Incomings extends Migration
      */
     public function up()
     {
-        Schema::create('incomings', function (Blueprint $table) {
-            $table->id('id_incoming');
-            $table->unsignedBigInteger('id_user');
+        Schema::create('brands', function (Blueprint $table) {
+            $table->id('id_brand');
             $table->unsignedBigInteger('id_supplier');
-            $table->datetime('date_incoming');
-            $table->double('total_price_incoming');
-            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
+            $table->string('name_brand');
+            $table->boolean('status_brand');
+            $table->timestamps();
             $table->foreign('id_supplier')->references('id_supplier')->on('suppliers')->onDelete('cascade');
         });
     }
@@ -31,6 +30,6 @@ class Incomings extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('incomings');
+        Schema::dropIfExists('brands');
     }
 }
