@@ -17,8 +17,8 @@ class CreateDetailsIncomingTable extends Migration
             $table->id('id_details_incoming');
             $table->unsignedBigInteger('id_item');
             $table->unsignedBigInteger('id_incoming');
-            $table->float('numbers_details_incoming');
-            $table->double('total_price_details_incoming');
+            $table->integer('numbers_details_incoming');
+            $table->double('total_price_details_incoming', 15, 4);
             $table->timestamps();
             $table->foreign('id_item')->references('id_item')->on('items')->onDelete('cascade');
             $table->foreign('id_incoming')->references('id_incoming')->on('incomings')->onDelete('cascade');

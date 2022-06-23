@@ -19,7 +19,7 @@ class CreateNoteSalesTable extends Migration
             $table->unsignedBigInteger('id_user');
             $table->datetime('date_note');
             $table->boolean('state_note');
-            $table->float('total_import_note');
+            $table->float('total_import_note', 15, 4);
             $table->timestamps();
             $table->foreign('id_client')->references('id_client')->on('clients')->onDelete('cascade');
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
