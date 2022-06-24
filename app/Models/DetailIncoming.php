@@ -20,4 +20,4 @@ class DetailIncoming extends Model
     public function item(){
         return $this->belongsTo('App\Models\Item', 'id_item');
     }
-}''
+}
