@@ -15,7 +15,7 @@ class NoteSalesController extends Controller
     public function index()
     {
         if (Auth::guest()) {
-            return view('auth.login');
+            return redirect('/login');
         }else {
             $notesales = Auth::user()->notesales()->get();
             return view('sales.sales')->with('notesales', $notesales);
