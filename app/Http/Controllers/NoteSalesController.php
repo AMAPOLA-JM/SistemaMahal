@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use auth;
 
 class NoteSalesController extends Controller
 {
@@ -13,7 +14,8 @@ class NoteSalesController extends Controller
      */
     public function index()
     {
-        return "Hola";
+        $notesales = Auth::user()->notesales()->get();
+        return view('home')->with('notesales', $notesales);
     }
 
     /**
