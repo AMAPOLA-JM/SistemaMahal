@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use DB;
+use App\Models\Item;
 
 class ItemsController extends Controller
 {
@@ -13,7 +16,8 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        //
+        $items = Item::all();
+        return view('items.items')->with('items', $items);
     }
 
     /**

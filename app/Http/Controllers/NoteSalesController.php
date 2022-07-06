@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use auth;
+use DB;
 
 class NoteSalesController extends Controller
 {
@@ -14,11 +15,16 @@ class NoteSalesController extends Controller
      */
     public function index()
     {
-        if (Auth::guest()) {
-            return redirect('/login');
-        }else {
-            $notesales = Auth::user()->notesales()->get();
-            return view('sales.sales')->with('notesales', $notesales);
+        $notesales = Auth::user()->notesales()->get();
+        return view('notesales.notesales')->with('notesales', $notesales);
+    }
+
+    public function newSell(Request $request, $tipo)
+    {
+        if ($tipo == 1) {
+            return view('notesales.vmenor');
+        }elseif ($tipo == 2) {
+            return view('notesales.vmayor');
         }
     }
 

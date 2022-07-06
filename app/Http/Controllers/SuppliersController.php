@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Supplier;
+use DB;
 
 class SuppliersController extends Controller
 {
@@ -13,7 +15,8 @@ class SuppliersController extends Controller
      */
     public function index()
     {
-        //
+        $suppliers = Supplier::all();
+        return view('suppliers.suppliers')->with('suppliers', $suppliers);
     }
 
     /**

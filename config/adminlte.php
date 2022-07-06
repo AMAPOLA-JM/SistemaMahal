@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 
 return [
 
@@ -127,7 +128,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-secondary elevation-4',
+    'classes_sidebar' => 'sidebar-dark-info elevation-4',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-info navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -241,64 +242,146 @@ return [
             'type' => 'sidebar-menu-search',
             'text' => 'buscar',
         ],
+        ['header' => 'ACCIONES'],
         [
-            'text' => 'Ventas',
-            'url'  => 'notesales',
-            'icon' => 'far fa fa-fw fa-light fa-coins',
+            'text'    => 'Ventas',
+            'icon'    => 'fas fa-fw fa-wallet',
+            'submenu' => [
+                [
+                    'text'    => 'Nueva Venta',
+                    'icon'    => 'fas fa-fw fa-light fa-plus',
+                    'submenu' => [
+                        [
+                            'text' => 'Por menor',
+                            'icon' => 'fas fa-fw fa-light fa-user',
+                            'url'  => 'notesales/newsell/1',
+                        ],
+                        [
+                            'text' => 'Por mayor',
+                            'icon' => 'fas fa-fw fa-light fa-users',
+                            'url'  => 'notesales/newsell/2',
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'Gestionar Ventas',
+                    'icon' => 'fas fa-fw fa-light fa-coins',
+                    'route'  => 'notesales.index',
+                ],
+            ],
         ],
         [
             'text'        => 'Inventario',
-            'url'         => 'items',
             'icon'        => 'far fa fa-fw fa-light fa-list',
+            'submenu' => [
+                [
+                    'text' => 'Añadir Item',
+                    'icon' => 'fas fa-fw fa-light fa-plus',
+                    'route' => 'items.nuevo'
+                ],
+                [
+                    'text' => 'Gestionar Inventario',
+                    'icon' => 'fas fa-fw fa-light fa-box',
+                    'route' => 'items.index',
+                ],
+            ],
         ],
-        ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
+            'text'        => 'Entradas',
+            'icon'        => 'far fa fa-fw fa-light fa-truck',
+            'submenu' => [
+                [
+                    'text' => 'Nueva Entrada',
+                    'icon' => 'fas fa-fw fa-light fa-plus',
+                    'route' => 'incomings.nuevo',
+                ],
+                [
+                    'text' => 'Gestionar Entradas',
+                    'icon' => 'fas fa-fw fa-light fa-table',
+                    'route' => 'incomings.index'
+                ],
+            ],
+        ],
+        [
+            'text'        => 'Clientes',
+            'icon'        => 'far fa fa-fw fa-light fa-users',
+            'submenu' => [
+                [
+                    'text' => 'Nuevo Cliente',
+                    'icon' => 'fas fa-fw fa-light fa-plus',
+                    'route' => 'clients.nuevo'
+                ],
+                [
+                    'text' => 'Gestionar Clientes',
+                    'icon' => 'fas fa-fw fa-light fa-id-badge',
+                    'route' => 'clients.index',
+                ],
+            ],
+        ],
+        [
+            'text'        => 'Mas',
+            'icon'        => 'far fa fa-fw fa-light fa-bars',
+            'submenu' => [
+                [
+                    'text' => 'Proveedores',
+                    'icon' => 'fas fa-fw fa-light fa-boxes',
+                    'submenu' => [
+                        [
+                            'text' => 'Nuevo Proveedor',
+                            'icon' => 'fas fa-fw fa-light fa-plus',
+                            'route' => 'suppliers.nuevo'
+                        ],
+                        [
+                            'text' => 'Gestionar Proveedores',
+                            'icon' => 'fas fa-fw fa-light fa-handshake',
+                            'route' => 'suppliers.index',
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'Marcas',
+                    'icon' => 'fas fa-fw fa-light fa-copyright',
+                    'submenu' => [
+                        [
+                            'text' => 'Nueva Marca',
+                            'icon' => 'fas fa-fw fa-light fa-plus',
+                            'route' => 'brands.nuevo'
+                        ],
+                        [
+                            'text' => 'Gestionar Marcas',
+                            'icon' => 'fas fa-fw fa-light fa-thumbs-up',
+                            'route' => 'brands.index',
+                        ],
+                    ],
+                ],
+                [
+                    'text' => 'Categorias',
+                    'icon' => 'fas fa-fw fa-light fa-star',
+                    'submenu' => [
+                        [
+                            'text' => 'Nuevo Categoria',
+                            'icon' => 'fas fa-fw fa-light fa-plus',
+                            'route' => 'categories.nuevo'
+                        ],
+                        [
+                            'text' => 'Gestionar Categorias',
+                            'icon' => 'fas fa-fw fa-light fa-share',
+                            'route' => 'categories.index',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        ['header' => 'CONFIGURACIÓN DE CUENTA'],
+        [
+            'text' => 'Cuenta',
+            'route' => ''
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'change_password',
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
         ],
         ['header' => 'labels'],
         [

@@ -32,42 +32,49 @@ Route::get('/', function () {
     return redirect('/home');
 });
 
-Route::resources([
-    'brands' => BrandsController::class
-]);
+Route::group([], function(){ //group for notesales
+    Route::get('notesales', [NoteSalesController::class, 'index'])->name('notesales.index')->middleware('auth');
+    Route::get('notesales/newsell/{tipo}', [NoteSalesController::class, 'newSell'])->name('notesales.venta')->middleware('auth');
+});
 
-Route::resources([
-    'categories' => CategoriesController::class
-]);
+Route::group([], function(){ //group for items
+    Route::get('items', [ItemsController::class, 'index'])->name('items.index')->middleware('auth');
+    Route::get('items/nuevo', function(){
+        return view('items.nuevo');
+    })->name('items.nuevo')->middleware('auth');
+});
 
-Route::resources([
-    'clients' => ClientsController::class
-]);
+Route::group([], function(){ //group for clients
+    Route::get('clients', [ClientsController::class, 'index'])->name('clients.index')->middleware('auth');
+    Route::get('clients/nuevo', function(){
+        return view('clients.nuevo');
+    })->name('clients.nuevo')->middleware('auth');
+});
 
-Route::resources([
-    'detailsincoming' => DetailsIncomingController::class
-]);
+Route::group([], function(){ //group for incomings
+    Route::get('incomings', [IncomingsController::class, 'index'])->name('incomings.index')->middleware('auth');
+    Route::get('incomings/nuevo', function(){
+        return view('incomings.nuevo');
+    })->name('incomings.nuevo')->middleware('auth');
+});
 
-Route::resources([
-    'incomings' => IncomingsController::class
-]);
+Route::group([], function(){ //group for incomings
+    Route::get('suppliers', [SuppliersController::class, 'index'])->name('suppliers.index')->middleware('auth');
+    Route::get('suppliers/nuevo', function(){
+        return view('suppliers.nuevo');
+    })->name('suppliers.nuevo')->middleware('auth');
+});
 
-Route::resources([
-    'items' => ItemsController::class
-]);
+Route::group([], function(){ //group for incomings
+    Route::get('brands', [BrandsController::class, 'index'])->name('brands.index')->middleware('auth');
+    Route::get('brands/nuevo', function(){
+        return view('brands.nuevo');
+    })->name('brands.nuevo')->middleware('auth');
+});
 
-Route::resources([
-    'notedetails' => NoteDetailsController::class
-]);
-
-Route::resources([
-    'notesales' => NoteSalesController::class
-]);
-
-Route::resources([
-    'suppliers' => SuppliersController::class
-]);
-
-Route::resources([
-    'Users' => UsersController::class
-]);
+Route::group([], function(){ //group for incomings
+    Route::get('categories', [CategoriesController::class, 'index'])->name('categories.index')->middleware('auth');
+    Route::get('categories/nuevo', function(){
+        return view('categories.nuevo');
+    })->name('categories.nuevo')->middleware('auth');
+});

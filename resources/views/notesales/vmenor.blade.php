@@ -14,7 +14,8 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    {{ __('You are logged in!') }}
+
+                    {{ __('venta por menor!') }}
                     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                     <p>Hola</p>
                 </div>

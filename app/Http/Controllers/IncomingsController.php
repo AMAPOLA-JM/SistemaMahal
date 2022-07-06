@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use App\Models\Incoming;
 
 class IncomingsController extends Controller
 {
@@ -13,7 +15,8 @@ class IncomingsController extends Controller
      */
     public function index()
     {
-        //
+        $incomings = Incoming::all();
+        return view('incomings.incomings')->with('incomings', $incomings);
     }
 
     /**
