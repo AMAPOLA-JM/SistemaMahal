@@ -374,28 +374,23 @@ return [
         ],
         ['header' => 'CONFIGURACIÓN DE CUENTA'],
         [
-            'text' => 'Cuenta',
-            'route' => ''
-            'icon' => 'fas fa-fw fa-user',
+            'text' => 'Configuración',
+            'route' => 'settings.index',
+            'icon' => 'fas fa-fw fa-light fa-wrench',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
+            'text' => 'Cambiar Contraseña',
+            'route' => 'settings.change.pass',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        ['header' => 'labels'],
+        ['header' => 'Asuntos'],
         [
-            'text'       => 'important',
+            'text'       => 'Importantes',
             'icon_color' => 'red',
             'url'        => '#',
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'information',
+            'text'       => 'Información',
             'icon_color' => 'cyan',
             'url'        => '#',
         ],

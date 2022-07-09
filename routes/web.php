@@ -78,3 +78,12 @@ Route::group([], function(){ //group for incomings
         return view('categories.nuevo');
     })->name('categories.nuevo')->middleware('auth');
 });
+
+Route::group([], function(){ //group for incomings
+    Route::get('settings', function(){
+        return view('settings.settings');
+    })->name('settings.index')->middleware('auth');
+    Route::get('settings/pass', function(){
+        return view('settings.changePass');
+    })->name('settings.change.pass')->middleware('auth');
+});
