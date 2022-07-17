@@ -10,7 +10,7 @@ class Item extends Model
     use HasFactory;
 
     protected $table = "items";
-
+    protected $primaryKey = 'id_item';
     protected $fillable = ['id_category', 'id_brand', 'name_item', 'size_item', 'stock', 'unit_price_item', 'wholesale_price_item', 'description_item'];
 
     public function detailsincomings(){

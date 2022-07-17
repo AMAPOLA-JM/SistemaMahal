@@ -10,7 +10,7 @@ class Brand extends Model
     use HasFactory;
 
     protected $table = "brands";
-
+    protected $primaryKey = 'id_brand';
     protected $fillable = ['id_supplier', 'name_brand', 'status_brand'];
 
     public function items(){

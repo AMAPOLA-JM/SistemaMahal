@@ -8,7 +8,7 @@
 
         <div class="input-group input-group-sm">
             <div class="">
-                <a class="btn btn-outline-success btn-sm" href="{{route('items.nuevo')}}" role="button">Nuevo Item</a>
+                <a class="btn btn-outline-success btn-sm" href="{{route('items.create')}}" role="button">Nuevo Item</a>
             </div>
             &nbsp;
             <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -26,21 +26,23 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <table class="table table-responsive table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>ID</th>
-                    <th>Categoria</th>
-                    <th>Marca</th>
-                    <th>Nombre</th>
-                    <th>Talla</th>
-                    <th>Stock</th>
-                    <th>P._Menor</th>
-                    <th>P._Mayor</th>
-                    <th >Descripción</th>
-                    <th >Acción</th>
-                </tr>
-            </thead>
+        <table class="table table-hover table-responsive">
+                <thead class="bg-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Categoria</th>
+                        <th>Marca</th>
+                        <th>Nombre</th>
+                        <th>Talla</th>
+                        <th>Stock</th>
+                        <th>P._Menor</th>
+                        <th>P._Mayor</th>
+                        <th>Descripción</th>
+                        @if (auth()->user()->type_user == 0)
+                        <th colspan="2">Acción</th>
+                        @endif
+                    </tr>
+                </thead>
             <tbody>
                 @foreach ($items as $item)
                 <tr>
@@ -53,7 +55,10 @@
                     <td>{{$item->unit_price_item}}</td>
                     <td>{{$item->wholesale_price_item}}</td>
                     <td class="col-4">{{$item->description_item}}</td>
-                    <td><a class="btn btn-primary" href="#" role="button">Link</a>&nbsp;<a class="btn btn-primary" href="#" role="button">Link</a></td>
+                    @if (auth()->user()->type_user == 0)
+                    <td><a class="btn btn-success btn-sm" href="#" role="button">Editar</a></td>
+                    <td><a class="btn btn-danger btn-sm" href="{{route('items.destroy', ['id' => $item->id_item])}}" role="button">Eliminar</a></td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>

@@ -10,7 +10,7 @@ class NoteSale extends Model
     use HasFactory;
 
     protected $table = "note_sales";
-
+    protected $primaryKey = 'id_note_sale';
     protected $fillable = ['id_client', 'id_user', 'date_note', 'state_note', 'total_import_note'];
 
     public function notedetails(){

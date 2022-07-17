@@ -21,6 +21,7 @@ class ItemsController extends Controller
             ->join('brands', 'items.id_brand', '=', 'brands.id_brand')
             ->select('items.id_item', 'items.name_item', 'items.size_item', 'items.stock', 'items.unit_price_item', 'items.wholesale_price_item', 'items.description_item', 'brands.name_brand', 'categories.name_category')
             ->get();
+        $usertype = auth()->user()->type_user;
         return view('items.items')->with('items', $items);
     }
 
@@ -31,7 +32,7 @@ class ItemsController extends Controller
      */
     public function create()
     {
-        //
+        return view('items.nuevo');
     }
 
     /**
@@ -87,6 +88,7 @@ class ItemsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Item::destroy($id);
+        return redirect()->route('items.index');
     }
 }

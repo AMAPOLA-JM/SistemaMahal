@@ -19,23 +19,18 @@ class NoteSalesController extends Controller
         return view('notesales.notesales')->with('notesales', $notesales);
     }
 
-    public function newSell(Request $request, $tipo)
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request, $tipo)
     {
         if ($tipo == 1) {
             return view('notesales.vmenor');
         }elseif ($tipo == 2) {
             return view('notesales.vmayor');
         }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**

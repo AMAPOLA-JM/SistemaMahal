@@ -277,7 +277,7 @@ return [
                 [
                     'text' => 'Añadir Item',
                     'icon' => 'fas fa-fw fa-light fa-plus',
-                    'route' => 'items.nuevo'
+                    'route' => 'items.create'
                 ],
                 [
                     'text' => 'Gestionar Inventario',
@@ -293,7 +293,7 @@ return [
                 [
                     'text' => 'Nueva Entrada',
                     'icon' => 'fas fa-fw fa-light fa-plus',
-                    'route' => 'incomings.nuevo',
+                    'route' => 'incomings.create',
                 ],
                 [
                     'text' => 'Gestionar Entradas',
@@ -309,7 +309,7 @@ return [
                 [
                     'text' => 'Nuevo Cliente',
                     'icon' => 'fas fa-fw fa-light fa-plus',
-                    'route' => 'clients.nuevo'
+                    'route' => 'clients.create'
                 ],
                 [
                     'text' => 'Gestionar Clientes',
@@ -329,7 +329,7 @@ return [
                         [
                             'text' => 'Nuevo Proveedor',
                             'icon' => 'fas fa-fw fa-light fa-plus',
-                            'route' => 'suppliers.nuevo'
+                            'route' => 'suppliers.create'
                         ],
                         [
                             'text' => 'Gestionar Proveedores',
@@ -345,7 +345,7 @@ return [
                         [
                             'text' => 'Nueva Marca',
                             'icon' => 'fas fa-fw fa-light fa-plus',
-                            'route' => 'brands.nuevo'
+                            'route' => 'brands.create'
                         ],
                         [
                             'text' => 'Gestionar Marcas',
@@ -361,7 +361,7 @@ return [
                         [
                             'text' => 'Nuevo Categoria',
                             'icon' => 'fas fa-fw fa-light fa-plus',
-                            'route' => 'categories.nuevo'
+                            'route' => 'categories.create'
                         ],
                         [
                             'text' => 'Gestionar Categorias',

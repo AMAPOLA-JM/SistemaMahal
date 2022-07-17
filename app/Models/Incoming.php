@@ -10,7 +10,7 @@ class Incoming extends Model
     use HasFactory;
 
     protected $table = "incomings";
-
+    protected $primaryKey = 'id_incoming';
     protected $fillable = ['id_user', 'id_supplier', 'date_incoming', 'total_price_incoming'];
 
     public function detailsincomings(){
