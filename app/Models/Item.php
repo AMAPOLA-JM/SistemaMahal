@@ -11,7 +11,7 @@ class Item extends Model
 
     protected $table = "items";
 
-    protected $fillable = ['id_category', 'id_brand', 'name_item', 'size_item', 'unit_price_item', 'wholesale_price_item', 'description_item'];
+    protected $fillable = ['id_category', 'id_brand', 'name_item', 'size_item', 'stock', 'unit_price_item', 'wholesale_price_item', 'description_item'];
 
     public function detailsincomings(){
         return $this->hasMany('App\Models\DetailIncoming', 'id_item');

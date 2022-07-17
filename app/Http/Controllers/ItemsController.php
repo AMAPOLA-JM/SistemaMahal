@@ -16,7 +16,11 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        $items = Item::all();
+        $items = DB::table('items')
+            ->join('categories', 'items.id_category', '=', 'categories.id_category')
+            ->join('brands', 'items.id_brand', '=', 'brands.id_brand')
+            ->select('items.id_item', 'items.name_item', 'items.size_item', 'items.stock', 'items.unit_price_item', 'items.wholesale_price_item', 'items.description_item', 'brands.name_brand', 'categories.name_category')
+            ->get();
         return view('items.items')->with('items', $items);
     }
 

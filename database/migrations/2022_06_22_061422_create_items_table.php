@@ -19,6 +19,7 @@ class CreateItemsTable extends Migration
             $table->unsignedBigInteger('id_brand');
             $table->string('name_item');
             $table->string('size_item');
+            $table->integer('stock');
             $table->double('unit_price_item');
             $table->double('wholesale_price_item');
             $table->text('description_item');
