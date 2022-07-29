@@ -70,7 +70,7 @@ return [
     'usermenu_header_class' => 'bg-white',
     'usermenu_image' => true,
     'usermenu_desc' => true,
-    'usermenu_profile_url' => true,
+    'usermenu_profile_url' => false,
 
     /*
     |--------------------------------------------------------------------------
@@ -382,17 +382,6 @@ return [
             'text' => 'Cambiar Contraseña',
             'route' => 'settings.change.pass',
             'icon' => 'fas fa-fw fa-lock',
-        ],
-        ['header' => 'Asuntos'],
-        [
-            'text'       => 'Importantes',
-            'icon_color' => 'red',
-            'url'        => '#',
-        ],
-        [
-            'text'       => 'Información',
-            'icon_color' => 'cyan',
-            'url'        => '#',
         ],
     ],
 
