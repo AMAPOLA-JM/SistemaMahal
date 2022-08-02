@@ -32,7 +32,13 @@ class ItemsController extends Controller
      */
     public function create()
     {
-        return view('items.nuevo');
+        $categories = DB::table('categories')
+            ->select('id_category', 'name_category')
+            ->get();
+        $brands = DB::table('brands')
+            ->select('id_brand', 'name_brand')
+            ->get();
+        return view('items.nuevo')->with(array('categories'=>$categories, 'brands'=>$brands));
     }
 
     /**
