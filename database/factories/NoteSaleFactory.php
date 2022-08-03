@@ -17,7 +17,7 @@ class NoteSaleFactory extends Factory
             'id_client' => $this->faker->numberBetween(1, 10),
             'id_user' => $this->faker->numberBetween(1, 10),
             'date_note' => $this->faker->dateTime(),
-            'state_note' => $this->faker->numberBetween(0, 3),
+            'state_note' => $this->faker->numberBetween(0, 2),
             'total_import_note' => $this->faker->randomFloat(4),
         ];
     }

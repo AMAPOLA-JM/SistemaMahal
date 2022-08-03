@@ -26,43 +26,45 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <table class="table table-hover table-responsive">
-                <thead class="bg-dark">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                    <thead class="bg-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Categoria</th>
+                            <th>Marca</th>
+                            <th>Nombre</th>
+                            <th>Talla</th>
+                            <th>Stock</th>
+                            <th>P._Menor</th>
+                            <th>P._Mayor</th>
+                            <th>Descripción</th>
+                            @if (auth()->user()->type_user == 0)
+                            <th colspan="2">Acción</th>
+                            @endif
+                        </tr>
+                    </thead>
+                <tbody>
+                    @foreach ($items as $item)
                     <tr>
-                        <th>ID</th>
-                        <th>Categoria</th>
-                        <th>Marca</th>
-                        <th>Nombre</th>
-                        <th>Talla</th>
-                        <th>Stock</th>
-                        <th>P._Menor</th>
-                        <th>P._Mayor</th>
-                        <th>Descripción</th>
+                        <td>{{$item->id_item}}</td>
+                        <td>{{$item->name_category}}</td>
+                        <td>{{$item->name_brand}}</td>
+                        <td>{{$item->name_item}}</td>
+                        <td>{{$item->size_item}}</td>
+                        <td>{{$item->stock}}</td>
+                        <td>{{$item->unit_price_item}}</td>
+                        <td>{{$item->wholesale_price_item}}</td>
+                        <td class="col-4">{{$item->description_item}}</td>
                         @if (auth()->user()->type_user == 0)
-                        <th colspan="2">Acción</th>
+                        <td><a class="btn btn-success btn-sm" href="#" role="button">Editar</a></td>
+                        <td><a class="btn btn-danger btn-sm" href="{{route('items.destroy', ['id' => $item->id_item])}}" role="button">Eliminar</a></td>
                         @endif
                     </tr>
-                </thead>
-            <tbody>
-                @foreach ($items as $item)
-                <tr>
-                    <td>{{$item->id_item}}</td>
-                    <td>{{$item->name_category}}</td>
-                    <td>{{$item->name_brand}}</td>
-                    <td>{{$item->name_item}}</td>
-                    <td>{{$item->size_item}}</td>
-                    <td>{{$item->stock}}</td>
-                    <td>{{$item->unit_price_item}}</td>
-                    <td>{{$item->wholesale_price_item}}</td>
-                    <td class="col-4">{{$item->description_item}}</td>
-                    @if (auth()->user()->type_user == 0)
-                    <td><a class="btn btn-success btn-sm" href="#" role="button">Editar</a></td>
-                    <td><a class="btn btn-danger btn-sm" href="{{route('items.destroy', ['id' => $item->id_item])}}" role="button">Eliminar</a></td>
-                    @endif
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 @endsection
