@@ -35,12 +35,15 @@ Route::get('/', function () {
 Route::group([], function(){ //group for notesales
     Route::get('notesales', [NoteSalesController::class, 'index'])->name('notesales.index')->middleware('auth');
     Route::get('notesales/newsell/{tipo}', [NoteSalesController::class, 'create'])->name('notesales.create')->middleware('auth');
+    Route::get('notesales/edit/{id}', [NoteSalesController::class, 'edit'])->name('notesales.edit')->middleware('auth');
+    Route::get('notesales/show/{id}', [NoteSalesController::class, 'show'])->name('notesales.show')->middleware('auth');
 });
 
 Route::group([], function(){ //group for items
     Route::get('items', [ItemsController::class, 'index'])->name('items.index')->middleware('auth');
     Route::get('items/nuevo', [ItemsController::class, 'create'])->name('items.create')->middleware('auth');
     Route::get('items/destroy/{id}', [ItemsController::class, 'destroy'])->name('items.destroy')->middleware('auth');
+    Route::post('items/store', [ItemsController::class, 'store'])->name('items.store')->middleware('auth');
 });
 
 Route::group([], function(){ //group for clients

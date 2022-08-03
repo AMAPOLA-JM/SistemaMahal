@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use auth;
+use Auth;
 use DB;
+use App\Models\NoteSale;
 
 class NoteSalesController extends Controller
 {
@@ -15,7 +16,24 @@ class NoteSalesController extends Controller
      */
     public function index()
     {
-        $notesales = Auth::user()->notesales()->get();
+        if (Auth::user()->type_user == 0) {
+            $notesales = DB::table('note_sales')
+                ->join('clients', 'clients.id_client', '=', 'note_sales.id_client')
+                ->join('users', 'users.id', '=', 'note_sales.id_user')
+                ->select('id_note_sale', 'name_client', 'surname_client', 'name', 'date_note', 'state_note', 'total_import_note')
+                ->orderByDesc('id_note_sale')
+                ->limit(150)
+                ->get();
+        }else {
+            $notesales = DB::table('note_sales')
+                ->join('clients', 'clients.id_client', '=', 'note_sales.id_client')
+                ->join('users', 'users.id', '=', 'note_sales.id_user')
+                ->select('id_note_sale', 'name_client', 'surname_client', 'name', 'date_note', 'state_note', 'total_import_note')
+                ->where('id_user', '=', Auth::user()->type_user)
+                ->orderByDesc('id_note_sale')
+                ->limit(100)
+                ->get();
+        }
         return view('notesales.notesales')->with('notesales', $notesales);
     }
 
@@ -52,7 +70,8 @@ class NoteSalesController extends Controller
      */
     public function show($id)
     {
-        //
+        $notesale = NoteSale::findOrFail($id);
+        return view('notesales.show')->with('notesale', $notesale);
     }
 
     /**
@@ -63,7 +82,10 @@ class NoteSalesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $notesale = NoteSale::findOrFail($id);
+        $notesale->state_note = $notesale->state_note - 1;
+        $notesale->save();
+        return redirect('/notesales');
     }
 
     /**

@@ -49,7 +49,11 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = new Item;
+        $item->stock = 0;
+        $item->fill($request->all());
+        $item->save();
+        return redirect('/items');
     }
 
     /**
