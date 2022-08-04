@@ -42,7 +42,7 @@
                                 <td class="text-center"> <a href="" class="btn disabled btn-warning">Desactivado</a> </td>
                             @endif
                             @if (auth()->user()->type_user == 0)
-                            <td class="text-center"><a class="btn btn-primary" href="#" role="button">Editar</a></td>
+                            <td class="text-center"><a class="btn btn-primary" href="{{route('categories.edit', ['id'=>$categorie->id_category])}}" role="button">Editar</a></td>
                             <td class="text-center"><a class="btn btn-danger" href="{{route('categories.destroy', ['id'=>$categorie->id_category])}}" role="button">Eliminar</a></td>
                             @endif
                         </tr>

@@ -44,17 +44,6 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -62,7 +51,8 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('categories.edit')->with('category', $category);
     }
 
     /**
@@ -72,9 +62,14 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $category = Category::findOrFail($request->id_category);
+        $category->name_category = $request->name_category;
+        $category->description_category = $request->description_category;
+        $category->state_category = $request->state_category;
+        $category->save();
+        return redirect('/categories');
     }
 
     /**
