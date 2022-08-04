@@ -26,7 +26,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.nuevo');
     }
 
     /**
@@ -37,7 +37,10 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category;
+        $category->fill($request->all());
+        $category->save();
+        return redirect('/categories');
     }
 
     /**
@@ -82,6 +85,7 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::destroy($id);
+        return back();
     }
 }

@@ -69,6 +69,8 @@ Route::group([], function(){ //group for incomings
 Route::group([], function(){ //group for incomings
     Route::get('categories', [CategoriesController::class, 'index'])->name('categories.index')->middleware('auth');
     Route::get('categories/nuevo', [CategoriesController::class, 'create'])->name('categories.create')->middleware('auth');
+    Route::get('categories/destroy/{id}', [CategoriesController::class, 'destroy'])->name('categories.destroy')->middleware('auth');
+    Route::post('categories/store', [CategoriesController::class, 'store'])->name('categories.store')->middleware('auth');
 });
 
 Route::group([], function(){ //group for incomings
