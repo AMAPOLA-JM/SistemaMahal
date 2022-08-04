@@ -59,6 +59,10 @@ Route::group([], function(){ //group for incomings
 Route::group([], function(){ //group for incomings
     Route::get('suppliers', [SuppliersController::class, 'index'])->name('suppliers.index')->middleware('auth');
     Route::get('suppliers/nuevo', [SuppliersController::class, 'create'])->name('suppliers.create')->middleware('auth');
+    Route::get('suppliers/destroy/{id}', [SuppliersController::class, 'destroy'])->name('suppliers.destroy')->middleware('auth');
+    Route::get('suppliers/edit/{id}', [SuppliersController::class, 'edit'])->name('suppliers.edit')->middleware('auth');
+    Route::post('suppliers/store', [SuppliersController::class, 'store'])->name('suppliers.store')->middleware('auth');
+    Route::post('suppliers/update', [SuppliersController::class, 'update'])->name('suppliers.update')->middleware('auth');
 });
 
 Route::group([], function(){ //group for incomings

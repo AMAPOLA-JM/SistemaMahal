@@ -26,7 +26,7 @@ class SuppliersController extends Controller
      */
     public function create()
     {
-        //
+        return view('suppliers.nuevo');
     }
 
     /**
@@ -37,7 +37,10 @@ class SuppliersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $supplier = new Supplier;
+        $supplier->fill($request->all());
+        $supplier->save();
+        return redirect('/suppliers');
     }
 
     /**
@@ -59,7 +62,8 @@ class SuppliersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $supplier = Supplier::findOrFail($id);
+        return view('suppliers.edit')->with('supplier', $supplier);
     }
 
     /**
@@ -69,9 +73,16 @@ class SuppliersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $supplier = Supplier::findOrFail($request->id_supplier);
+        $supplier->name_supplier = $request->name_supplier;
+        $supplier->seller_supplier = $request->seller_supplier;
+        $supplier->city_supplier = $request->city_supplier;
+        $supplier->contact_supplier = $request->contact_supplier;
+        $supplier->status_supplier = $request->status_supplier;
+        $supplier->save();
+        return redirect('/suppliers');
     }
 
     /**
@@ -82,6 +93,7 @@ class SuppliersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $supplier = Supplier::destroy($id);
+        return back();
     }
 }

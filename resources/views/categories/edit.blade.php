@@ -17,7 +17,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
-            <div class="card-header bg-secondary">
+            <div class="card-header bg-light">
                 <i class="fa fa-check"> Detalles de la Categoria: {{$category->id_category}}</i>
             </div>
             <form class="" action="{{route('categories.update')}}" method="POST">
