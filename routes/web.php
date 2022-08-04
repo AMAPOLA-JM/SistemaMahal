@@ -49,6 +49,10 @@ Route::group([], function(){ //group for items
 Route::group([], function(){ //group for clients
     Route::get('clients', [ClientsController::class, 'index'])->name('clients.index')->middleware('auth');
     Route::get('clients/nuevo', [ClientsController::class, 'create'])->name('clients.create')->middleware('auth');
+    Route::get('clients/destroy/{id}', [ClientsController::class, 'destroy'])->name('clients.destroy')->middleware('auth');
+    Route::get('clients/edit/{id}', [ClientsController::class, 'edit'])->name('clients.edit')->middleware('auth');
+    Route::post('clients/store', [ClientsController::class, 'store'])->name('clients.store')->middleware('auth');
+    Route::post('clients/update', [ClientsController::class, 'update'])->name('clients.update')->middleware('auth');
 });
 
 Route::group([], function(){ //group for incomings

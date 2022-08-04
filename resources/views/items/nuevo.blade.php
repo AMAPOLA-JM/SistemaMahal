@@ -66,7 +66,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-3">
-                                        <a class="btn btn-outline-success" style="width:100%;" href="{{route('categories.create')}}" role="button">Nueva Marca</a>
+                                        <a class="btn btn-outline-success" style="width:100%;" href="{{route('brands.create')}}" role="button">Nueva Marca</a>
                                     </div>
                                 </div>
                             </div>

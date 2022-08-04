@@ -46,14 +46,14 @@
                         <td>{{$notesale->name}}</td>
                         <td>{{$notesale->date_note}}</td>
                         @if ($notesale->state_note == 0)
-                            <td><a class="btn btn-primary disabled" href=""> Entregado</a> </td>
+                            <td class="col-1"><a class="btn btn-primary disabled" href=""> Entregado</a> </td>
                         @elseif ($notesale->state_note == 1)
-                            <td><a class="btn btn-warning" href="{{route('notesales.edit', ['id'=>$notesale->id_note_sale])}}"> Entregar</a> </td>
+                            <td class="col-1"><a class="btn btn-warning" href="{{route('notesales.edit', ['id'=>$notesale->id_note_sale])}}"> Entregar</a> </td>
                         @elseif ($notesale->state_note == 2)
-                            <td><a class="btn btn-danger" href="{{route('notesales.edit', ['id'=>$notesale->id_note_sale])}}"> Cancelar</a> </td>
+                            <td class="col-1"><a class="btn btn-danger" href="{{route('notesales.edit', ['id'=>$notesale->id_note_sale])}}"> Cancelar</a> </td>
                         @endif
-                        <td>{{$notesale->total_import_note}}</td>
-                        <td class="text-right"><a class="btn btn-success" href="{{route('notesales.show', ['id'=>$notesale->id_note_sale])}}" role="button"><i class="fa fa-eye"></i> Ver Detalles</a></td>
+                        <td class="col-1">{{$notesale->total_import_note}}</td>
+                        <td class="text-right col-2"><a class="btn btn-success" href="{{route('notesales.show', ['id'=>$notesale->id_note_sale])}}" role="button"><i class="fa fa-eye"></i> Ver Detalles</a></td>
                     </tr>
                     @endforeach
                 </tbody>

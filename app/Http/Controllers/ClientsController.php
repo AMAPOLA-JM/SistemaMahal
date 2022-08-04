@@ -25,7 +25,7 @@ class ClientsController extends Controller
      */
     public function create()
     {
-        //
+        return view('clients.nuevo');
     }
 
     /**
@@ -36,7 +36,11 @@ class ClientsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client = new Client;
+        $client->fill($request->all());
+        $client->buys_client = 0;
+        $client->save();
+        return redirect('/clients');
     }
 
     /**
@@ -58,7 +62,8 @@ class ClientsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $client = Client::findOrFail($id);
+        return view('clients.edit')->with('client', $client);
     }
 
     /**
@@ -68,9 +73,15 @@ class ClientsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $client = Client::findOrFail($request->id_client);
+        $client->dni_client = $request->dni_client;
+        $client->name_client = $request->name_client;
+        $client->surname_client = $request->surname_client;
+        $client->tel_client = $request->tel_client;
+        $client->save();
+        return redirect('/clients');
     }
 
     /**
@@ -81,6 +92,7 @@ class ClientsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $client = Client::destroy($id);
+        return back();
     }
 }
