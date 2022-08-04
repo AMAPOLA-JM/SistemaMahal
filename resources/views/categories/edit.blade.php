@@ -32,7 +32,7 @@
                         <textarea class="form-control" name="description_category" id="description_category" rows="3" required>{{$category->description_category}}</textarea>
                     </div>
                     <div class="form-group">
-                        <label for="state_category">Descripción</label>
+                        <label for="state_category">Estado</label>
                         <select class="form-control select2" name="state_category" id="state_category" required>
                             @if ($category->state_category == 0)
                                 <option value="0" selected>Activado</option>

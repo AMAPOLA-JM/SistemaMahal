@@ -17,7 +17,7 @@
 <div class="row">
     <div class="col-sm-12">
         <div class="card">
-            <div class="card-header bg-secondary">
+            <div class="card-header bg-light">
                 <i class="fa fa-check"> Detalles de la Categoria</i>
             </div>
             <form class="" action="{{route('categories.store')}}" method="POST">
@@ -31,7 +31,7 @@
                         <textarea class="form-control" name="description_category" id="description_category" rows="4"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="state_category">Descripción</label>
+                        <label for="state_category">Estado</label>
                         <select class="form-control select2" name="state_category" id="state_category" required>
                             <option value="0" selected>Activado</option>
                             <option value="1">Desactivado</option>

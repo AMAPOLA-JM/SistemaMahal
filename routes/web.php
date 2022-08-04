@@ -64,6 +64,10 @@ Route::group([], function(){ //group for incomings
 Route::group([], function(){ //group for incomings
     Route::get('brands', [BrandsController::class, 'index'])->name('brands.index')->middleware('auth');
     Route::get('brands/nuevo', [BrandsController::class, 'create'])->name('brands.create')->middleware('auth');
+    Route::get('brands/destroy/{id}', [BrandsController::class, 'destroy'])->name('brands.destroy')->middleware('auth');
+    Route::get('brands/edit/{id}', [BrandsController::class, 'edit'])->name('brands.edit')->middleware('auth');
+    Route::post('brands/store', [BrandsController::class, 'store'])->name('brands.store')->middleware('auth');
+    Route::post('brands/update', [BrandsController::class, 'update'])->name('brands.update')->middleware('auth');
 });
 
 Route::group([], function(){ //group for incomings
