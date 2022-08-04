@@ -53,7 +53,11 @@
                 @endforeach
                 <p>Caja Día</p>
             </div>
+<<<<<<< HEAD
             <a href="#" class="small-box-footer">Mas información <i class="fas fa-arrow-circle-right"></i></a>
+=======
+            <a href="{{route('notesales.index')}}" class="small-box-footer">Mas información <i class="fas fa-arrow-circle-right"></i></a>
+>>>>>>> 041ee3d8d654b7953275bed293707ade07419d70
         </div>
     </div>
     <!-- ./col -->
