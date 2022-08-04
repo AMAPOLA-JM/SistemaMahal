@@ -5,7 +5,6 @@
         <h2>Detalle de la venta</h2>
     </div>
     <div class="col-sm-2">
-
         <div class="input-group input-group-sm">
             <div class="col-sm-12">
                 <a class="btn btn-danger" style="width:100%;" href="{{route('notesales.index')}}" role="button">Retroceder</a>
