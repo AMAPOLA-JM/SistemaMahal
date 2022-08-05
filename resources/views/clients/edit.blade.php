@@ -2,7 +2,7 @@
 @section('content_header')
 <div class="row">
     <div class="col-sm-10">
-        <h2>Nuevo Cliente</h2>
+        <h2>Editar Cliente</h2>
     </div>
     <div class="col-sm-2">
         <div class="input-group input-group-sm">
@@ -18,7 +18,7 @@
     <div class="col-sm-12">
         <div class="card">
             <div class="card-header bg-light">
-                <i class="fa fa-check"> Detalles de la Cliente: {{$client->id_client}}</i>
+                <i class="fa fa-check"> Detalles del Cliente: {{$client->id_client}}</i>
             </div>
             <form class="" action="{{route('clients.update')}}" method="POST">
                 <div class="card-body">

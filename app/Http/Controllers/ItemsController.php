@@ -99,6 +99,6 @@ class ItemsController extends Controller
     public function destroy($id)
     {
         $item = Item::destroy($id);
-        return redirect()->route('items.index');
+        return back(); //redirect()->route('items.index');
     }
 }

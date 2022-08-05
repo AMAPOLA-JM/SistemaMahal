@@ -15,9 +15,9 @@ class IncomingFactory extends Factory
     {
         return [
             'id_user' => $this->faker->numberBetween(1, 10),
-            'id_supplier' => $this->faker->numberBetween(1, 10),
             'date_incoming' => $this->faker->datetime(),
             'total_price_incoming' => $this->faker->randomFloat(4),
+            'status_incoming' => $this->faker->numberBetween(0, 1),
         ];
     }
 }

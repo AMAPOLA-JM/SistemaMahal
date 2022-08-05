@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use App\Models\DetailIncoming;
+use App\Models\Item;
+use Auth;
 
 class DetailsIncomingController extends Controller
 {
@@ -34,7 +38,14 @@ class DetailsIncomingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = Item::findOrFail($request->id_item);
+        $item->stock += $request->numbers_details_incoming;
+        $item->save();
+
+        $detailincoming = new DetailIncoming;
+        $detailincoming->fill($request->all());
+        $detailincoming->save();
+        return back();
     }
 
     /**
@@ -79,6 +90,7 @@ class DetailsIncomingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $detailincomin = DetailIncoming::destroy($id);
+        return back();
     }
 }

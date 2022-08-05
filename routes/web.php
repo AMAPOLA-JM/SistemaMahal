@@ -58,6 +58,15 @@ Route::group([], function(){ //group for clients
 Route::group([], function(){ //group for incomings
     Route::get('incomings', [IncomingsController::class, 'index'])->name('incomings.index')->middleware('auth');
     Route::get('incomings/nuevo', [IncomingsController::class, 'create'])->name('incomings.create')->middleware('auth');
+    Route::get('incomings/show/{id}', [IncomingsController::class, 'show'])->name('incomings.show')->middleware('auth');
+    Route::get('incomings/destroy/{id}', [IncomingsController::class, 'destroy'])->name('incomings.destroy')->middleware('auth');
+    Route::get('incomings/edit', [IncomingsController::class, 'edit'])->name('incomings.edit')->middleware('auth');
+    Route::get('incomings/update', [IncomingsController::class, 'update'])->name('incomings.update')->middleware('auth');
+});
+
+Route::group([], function(){ //group for details_incoming
+    Route::get('detincomings/destroy/{id}', [DetailsIncomingController::class, 'destroy'])->name('detincomings.destroy')->middleware('auth');
+    Route::post('detincomings/store', [DetailsIncomingController::class, 'store'])->name('detincomings.store')->middleware('auth');
 });
 
 Route::group([], function(){ //group for incomings

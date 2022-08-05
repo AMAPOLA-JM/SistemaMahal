@@ -40,7 +40,7 @@
                             <th>P._Mayor</th>
                             <th>Descripción</th>
                             @if (auth()->user()->type_user == 0)
-                            <th colspan="2">Acción</th>
+                            <th colspan="2" class="text-center">Acción</th>
                             @endif
                         </tr>
                     </thead>
@@ -57,8 +57,8 @@
                         <td>{{$item->wholesale_price_item}}</td>
                         <td class="col-4">{{$item->description_item}}</td>
                         @if (auth()->user()->type_user == 0)
-                        <td><a class="btn btn-success btn-sm" href="#" role="button">Editar</a></td>
-                        <td><a class="btn btn-danger btn-sm" href="{{route('items.destroy', ['id' => $item->id_item])}}" role="button">Eliminar</a></td>
+                        <td class="text-right col-1"><a class="btn btn-success" href="#" role="button">Editar</a></td>
+                        <td class="text-right col-1"><a class="btn btn-danger" href="{{route('items.destroy', ['id' => $item->id_item])}}" role="button">Eliminar</a></td>
                         @endif
                     </tr>
                     @endforeach

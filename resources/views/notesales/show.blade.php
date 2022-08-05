@@ -78,7 +78,7 @@
                                 <h5><b>Vendedor:</b></h5>
                                 <h5 class="text-center">{{$notesale->name}}</h5>
                                 <h5><b>Monto Total:</b></h5>
-                                <h5 class="text-center">{{$notesale->total_import_note}}</h5>
+                                <h5 class="text-center">S/ {{$notesale->total_import_note}}</h5>
                                 @endforeach
                             </div>
                         </div>
@@ -117,8 +117,8 @@
                                     <td>{{$note->id_note_detail}}</td>
                                     <td>{{$note->name_item}} {{$note->size_item}}</td>
                                     <td>{{$note->quantity_note_detail}}</td>
-                                    <td>{{$note->unit_price_item}}</td>
-                                    <td>{{$note->total_price_note_detail}}</td>
+                                    <td>S/ {{$note->unit_price_item}}</td>
+                                    <td>S/ {{$note->total_price_note_detail}}</td>
                                 </tr>
                             @endforeach
                         </tbody>

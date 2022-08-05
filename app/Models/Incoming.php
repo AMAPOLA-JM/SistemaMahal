@@ -11,7 +11,7 @@ class Incoming extends Model
 
     protected $table = "incomings";
     protected $primaryKey = 'id_incoming';
-    protected $fillable = ['id_user', 'id_supplier', 'date_incoming', 'total_price_incoming'];
+    protected $fillable = ['id_user', 'date_incoming', 'total_price_incoming', 'status_incoming'];
 
     public function detailsincomings(){
         return $this->hasMany('App\Models\DetailIncoming', 'id_incoming');
