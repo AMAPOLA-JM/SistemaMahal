@@ -42,7 +42,13 @@ class IncomingsController extends Controller
      */
     public function create()
     {
-        //
+        $incoming = New Incoming;
+        $incoming->id_user = Auth::user()->id;
+        $incoming->date_incoming = date("Y-m-d H:i:s");
+        $incoming->total_price_incoming = 0;
+        $incoming->status_incoming = 0;
+        $incoming->save();
+        return redirect()->route('incomings.edit');
     }
 
     /**
@@ -66,18 +72,28 @@ class IncomingsController extends Controller
     {
         $incomings = DB::table('incomings')
             ->join('users', 'users.id', '=', 'incomings.id_user')
-            ->select('id_incoming', 'name', 'surname_user', 'date_incoming', 'total_price_incoming')
             ->where('id_incoming', $id)
             ->get();
+
+        foreach ($incomings as $incomin) {
+            $val = $incomin->id_incoming;
+            $estado = $incomin->status_incoming;
+        }
 
         $detailincoming = DB::table('details_incoming')
             ->join('items', 'items.id_item', '=', 'details_incoming.id_item')
             ->join('brands', 'brands.id_brand', '=', 'items.id_brand')
             ->select('id_details_incoming', 'name_item', 'name_brand', 'size_item', 'numbers_details_incoming', 'total_price_details_incoming')
-            ->where('id_incoming', $id)
+            ->where('id_incoming', $val)
+            ->orderByDesc('id_details_incoming')
             ->get();
 
-        return view('incomings.show')->with(array('incomings'=>$incomings, 'detailincoming'=>$detailincoming));
+        $items = DB::table('items')
+            ->join('brands', 'items.id_brand', '=', 'brands.id_brand')
+            ->select('items.id_item', 'items.name_item', 'items.size_item', 'brands.name_brand')
+            ->get();
+
+        return view('incomings.show')->with(array('incomings'=>$incomings, 'detailincoming'=>$detailincoming, 'estado'=>$estado, 'items'=>$items, 'id'=>$val));
     }
 
     /**
@@ -93,6 +109,10 @@ class IncomingsController extends Controller
             ->orderByDesc('id_incoming')
             ->limit(1)
             ->get();
+
+        if ($incomings=="[]") {
+            return redirect()->route('incomings.create');
+        }
 
         foreach ($incomings as $incomin) {
             $val = $incomin->id_incoming;
@@ -122,9 +142,9 @@ class IncomingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update($id)
     {
-        $incoming = Incoming::findOrFail($request->id);
+        $incoming = Incoming::findOrFail($id);
         $incoming->status_incoming = 1;
         $incoming->save();
         return back();

@@ -37,6 +37,7 @@ Route::group([], function(){ //group for notesales
     Route::get('notesales/newsell/{tipo}', [NoteSalesController::class, 'create'])->name('notesales.create')->middleware('auth');
     Route::get('notesales/edit/{id}', [NoteSalesController::class, 'edit'])->name('notesales.edit')->middleware('auth');
     Route::get('notesales/show/{id}', [NoteSalesController::class, 'show'])->name('notesales.show')->middleware('auth');
+    Route::get('notesales/destroy/{id}', [NoteSalesController::class, 'destroy'])->name('notesales.destroy')->middleware('auth');
 });
 
 Route::group([], function(){ //group for items
@@ -61,7 +62,7 @@ Route::group([], function(){ //group for incomings
     Route::get('incomings/show/{id}', [IncomingsController::class, 'show'])->name('incomings.show')->middleware('auth');
     Route::get('incomings/destroy/{id}', [IncomingsController::class, 'destroy'])->name('incomings.destroy')->middleware('auth');
     Route::get('incomings/edit', [IncomingsController::class, 'edit'])->name('incomings.edit')->middleware('auth');
-    Route::get('incomings/update', [IncomingsController::class, 'update'])->name('incomings.update')->middleware('auth');
+    Route::get('incomings/update/{id}', [IncomingsController::class, 'update'])->name('incomings.update')->middleware('auth');
 });
 
 Route::group([], function(){ //group for details_incoming

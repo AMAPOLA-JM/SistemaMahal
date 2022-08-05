@@ -8,7 +8,7 @@
 
         <div class="input-group input-group-sm">
             <div class="">
-                <a class="btn btn-outline-success btn-sm" href="{{route('incomings.create')}}" role="button">Nueva Entrada</a>
+                <a class="btn btn-outline-success btn-sm" href="{{route('incomings.edit')}}" role="button">Registrar</a>
             </div>
             &nbsp;
             <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -64,7 +64,7 @@
                             <td class="text-right col-2"><a class="btn btn-success" href="{{route('incomings.show', ['id'=>$incoming->id_incoming])}}" role="button"><i class="fa fa-eye"></i> Ver Detalles</a></td>
                             <td class="text-center col-1"><a class="btn btn-danger" href="{{route('incomings.destroy', ['id'=>$incoming->id_incoming])}}" role="button">Eliminar</a></td>
                         @else
-                            <td class="text-right col-2 text-center" colspan="2"><a class="btn btn-success" href="{{route('incomings.show', ['id'=>$incoming->id_incoming])}}" role="button"><i class="fa fa-eye"></i> Ver Detalles</a></td>
+                            <td class="col-2 text-center" colspan="2"><a class="btn btn-success" href="{{route('incomings.show', ['id'=>$incoming->id_incoming])}}" role="button"><i class="fa fa-eye"></i> Ver Detalles</a></td>
                         @endif
                     </tr>
                     @endforeach

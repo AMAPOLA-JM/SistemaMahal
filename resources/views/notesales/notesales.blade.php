@@ -35,7 +35,17 @@
                         <th>Fecha</th>
                         <th>Estado</th>
                         <th>Monto Total</th>
-                        <th colspan="2" class="text-center">Acción</th>
+                        @php $val = 0; @endphp
+                        @foreach ($notesales as $notesale)
+                            @if ($notesale->total_import_note == 0)
+                                @php $val = 1; @endphp
+                            @endif
+                        @endforeach
+                        @if ($val == 1)
+                            <th colspan="2" class="text-center">Acción</th>
+                        @else
+                            <th colspan="1" class="text-center">Acción</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -53,7 +63,12 @@
                             <td class="col-1"><a class="btn btn-danger" href="{{route('notesales.edit', ['id'=>$notesale->id_note_sale])}}"> Cancelar</a> </td>
                         @endif
                         <td class="">S/ {{$notesale->total_import_note}}</td>
-                        <td class="text-right col-2"><a class="btn btn-success" href="{{route('notesales.show', ['id'=>$notesale->id_note_sale])}}" role="button"><i class="fa fa-eye"></i> Ver Detalles</a></td>
+                        @if ($notesale->total_import_note == 0)
+                            <td class="text-right col-2"><a class="btn btn-success" href="{{route('notesales.show', ['id'=>$notesale->id_note_sale])}}" role="button"><i class="fa fa-eye"></i> Ver Detalles</a></td>
+                            <td class="text-center col-1"><a class="btn btn-danger" href="{{route('notesales.destroy', ['id'=>$notesale->id_note_sale])}}" role="button">Eliminar</a></td>
+                        @else
+                            <td class="text-center col-2" colspan="2"><a class="btn btn-success" href="{{route('notesales.show', ['id'=>$notesale->id_note_sale])}}" role="button"><i class="fa fa-eye"></i> Ver Detalles</a></td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

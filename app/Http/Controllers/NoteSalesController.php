@@ -120,6 +120,7 @@ class NoteSalesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $notesale = NoteSale::destroy($id);
+        return back();
     }
 }

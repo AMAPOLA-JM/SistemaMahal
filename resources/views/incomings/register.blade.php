@@ -1,8 +1,15 @@
 @extends('adminlte::page')
 @section('content_header')
 <div class="row">
-    <div class="col-sm-10">
+    <div class="col-sm-8">
         <h2>Detalle de la Entrada</h2>
+    </div>
+    <div class="col-sm-2 pb-1">
+        <div class="input-group input-group-sm">
+            <div class="col-sm-12">
+                <a class="btn btn-success" style="width:100%;" href="{{route('incomings.create')}}" role="button">Nueva Entrada</a>
+            </div>
+        </div>
     </div>
     <div class="col-sm-2">
         <div class="input-group input-group-sm">
