@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 use App\Models\NoteSale;
+use App\Models\Client;
+use App\Models\Item;
 
 class NoteSalesController extends Controller
 {
@@ -42,13 +44,27 @@ class NoteSalesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, $tipo)
+    public function create()
     {
-        if ($tipo == 1) {
-            return view('notesales.vmenor');
-        }elseif ($tipo == 2) {
-            return view('notesales.vmayor');
-        }
+        $clients = DB::table('clients')
+            ->select('id_client', 'name_client', 'dni_client', 'surname_client')
+            ->get();
+
+        return view('notesales.nventa')->with('clients', $clients);
+    }
+
+    public function new(Request $request)
+    {
+        $notesale = New NoteSale;
+        $notesale->id_client = $request->id_client;
+        $notesale->id_user = Auth::user()->id;
+        $notesale->date_note = date("Y-m-d H:i:s");
+        $notesale->state_note = 2;
+        $notesale->total_import_note = 0;
+        $notesale->type_note_sale = $request->type_note_sale;
+        $notesale->save();
+
+        return redirect('/notesales');
     }
 
     /**
@@ -73,9 +89,15 @@ class NoteSalesController extends Controller
         $notesales = DB::table('note_sales')
             ->join('clients', 'clients.id_client', '=', 'note_sales.id_client')
             ->join('users', 'users.id', '=', 'note_sales.id_user')
-            ->select('id_note_sale', 'dni_client', 'name_client', 'surname_client', 'tel_client', 'name', 'date_note', 'state_note', 'total_import_note')
+            ->select('id_note_sale', 'dni_client', 'name_client', 'surname_client', 'tel_client', 'name', 'date_note', 'state_note', 'total_import_note', 'type_note_sale')
             ->where('id_note_sale', '=', $id)
             ->get();
+
+        foreach ($notesales as $notesale) {
+            $val = $notesale->id_note_sale;
+            $estado = $notesale->state_note;
+            $tipo = $notesale->type_note_sale;
+        }
 
         $notedetail = DB::table('note_details')
             ->join('items', 'items.id_item', '=', 'note_details.id_item')
@@ -83,7 +105,12 @@ class NoteSalesController extends Controller
             ->where('id_note_sale', '=', $id)
             ->get();
 
-        return view('notesales.show')->with(array('notesales'=>$notesales, 'notedetail'=>$notedetail));
+        $items = DB::table('items')
+            ->join('brands', 'items.id_brand', '=', 'brands.id_brand')
+            ->select('items.id_item', 'items.name_item', 'items.size_item', 'brands.name_brand')
+            ->get();
+
+        return view('notesales.show')->with(array('notesales'=>$notesales, 'notedetail'=>$notedetail, 'id'=>$val, 'estado'=>$estado, 'items'=>$items, 'tipo'=>$tipo));
     }
 
     /**

@@ -248,20 +248,9 @@ return [
             'icon'    => 'fas fa-fw fa-wallet',
             'submenu' => [
                 [
-                    'text'    => 'Nueva Venta',
+                    'text'    => 'Registrar Venta',
                     'icon'    => 'fas fa-fw fa-light fa-plus',
-                    'submenu' => [
-                        [
-                            'text' => 'Por menor',
-                            'icon' => 'fas fa-fw fa-light fa-user',
-                            'url'  => 'notesales/newsell/1',
-                        ],
-                        [
-                            'text' => 'Por mayor',
-                            'icon' => 'fas fa-fw fa-light fa-users',
-                            'url'  => 'notesales/newsell/2',
-                        ],
-                    ],
+                    'route'  => 'notesales.create',
                 ],
                 [
                     'text' => 'Gestionar Ventas',

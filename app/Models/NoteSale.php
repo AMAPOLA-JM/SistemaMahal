@@ -11,7 +11,7 @@ class NoteSale extends Model
 
     protected $table = "note_sales";
     protected $primaryKey = 'id_note_sale';
-    protected $fillable = ['id_client', 'id_user', 'date_note', 'state_note', 'total_import_note'];
+    protected $fillable = ['id_client', 'id_user', 'date_note', 'state_note', 'total_import_note', 'type_note_sale'];
 
     public function notedetails(){
         return $this->hasMany('App\Models\NoteDetail', 'id_note_sale');

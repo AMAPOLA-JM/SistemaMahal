@@ -8,7 +8,7 @@
 
         <div class="input-group input-group-sm">
             <div class="">
-                <a class="btn btn-outline-success btn-sm" href="{{route('notesales.create', ['tipo'=>1])}}" role="button">Nueva Venta</a>
+                <a class="btn btn-outline-success btn-sm" href="{{route('notesales.create')}}" role="button">Nueva Venta</a>
             </div>
             &nbsp;
             <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -56,11 +56,11 @@
                         <td>{{$notesale->name}}</td>
                         <td>{{$notesale->date_note}}</td>
                         @if ($notesale->state_note == 0)
-                            <td class="col-1"><a class="btn btn-primary disabled" href=""> Entregado</a> </td>
+                            <td class="col-1 text-center"><a class="btn btn-primary disabled" href=""> Vendido</a> </td>
                         @elseif ($notesale->state_note == 1)
-                            <td class="col-1"><a class="btn btn-warning" href="{{route('notesales.edit', ['id'=>$notesale->id_note_sale])}}"> Entregar</a> </td>
+                            <td class="col-1 text-center"><a class="btn btn-warning" href="{{route('notesales.edit', ['id'=>$notesale->id_note_sale])}}"> Entregar</a> </td>
                         @elseif ($notesale->state_note == 2)
-                            <td class="col-1"><a class="btn btn-danger" href="{{route('notesales.edit', ['id'=>$notesale->id_note_sale])}}"> Cancelar</a> </td>
+                            <td class="col-1 text-center"><a class="btn btn-danger" href="{{route('notesales.edit', ['id'=>$notesale->id_note_sale])}}"> Pagar</a> </td>
                         @endif
                         <td class="">S/ {{$notesale->total_import_note}}</td>
                         @if ($notesale->total_import_note == 0)
