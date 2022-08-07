@@ -86,10 +86,10 @@ class UsersController extends Controller
         $user->surname_user = $request->surname_user;
         $user->dni_user = $request->dni_user;
         $user->email = $request->email;
-        $request->password = bcrypt($request->password);
         if (auth()->user()->type_user == 0) {
             $user->type_user = $request->type_user;
             if ($request->password != "") {
+                $request->password = bcrypt($request->password);
                 $user->password = $request->password;
             }
         }

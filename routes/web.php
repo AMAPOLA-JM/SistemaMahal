@@ -42,8 +42,8 @@ Route::group([], function(){ //group for notesales
 });
 
 Route::group([], function(){ //group for details_incoming
-    Route::get('detnotesale/destroy/{id}', [DetailsIncomingController::class, 'destroy'])->name('detnotesale.destroy')->middleware('auth');
-    Route::post('detnotesale/store', [DetailsIncomingController::class, 'store'])->name('detnotesale.store')->middleware('auth');
+    //Route::get('detnotesale/destroy/{id}', [DetailsIncomingController::class, 'destroy'])->name('detnotesale.destroy')->middleware('auth');
+    Route::post('detnotesale/store', [NoteDetailsController::class, 'store'])->name('detnotesale.store')->middleware('auth');
 });
 
 Route::group([], function(){ //group for items

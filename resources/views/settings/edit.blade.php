@@ -43,6 +43,7 @@
                                 <input type="email" class="form-control" name="email" id="email" value="{{$user->email}}" required>
                             </div>
                             @if (auth()->user()->type_user == 0)
+
                                 @if (auth()->user()->id != $user->id)
                                     <div class="form-group">
                                         <label for="password">Contraseña</label>
@@ -60,6 +61,8 @@
                                             @endif
                                         </select>
                                     </div>
+                                @else
+                                    <input type="hidden"  name="type_user" id="type_user" value="0">
                                 @endif
                             @endif
                         </div>

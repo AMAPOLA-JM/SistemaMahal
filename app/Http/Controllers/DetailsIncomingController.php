@@ -96,18 +96,24 @@ class DetailsIncomingController extends Controller
     public function destroy($id)
     {
         $id_incoming = DB::table('details_incoming')
-            ->select('id_incoming', 'total_price_details_incoming')
+            ->select('id_incoming', 'total_price_details_incoming', 'numbers_details_incoming', 'id_item')
             ->where('id_details_incoming', '=', $id)
             ->get();
 
         foreach ($id_incoming as $id_incomin) {
             $ids = $id_incomin->id_incoming;
             $price = $id_incomin->total_price_details_incoming;
+            $stock = $id_incomin->numbers_details_incoming;
+            $item = $id_incomin->id_item;
         }
 
         $incoming = Incoming::findOrFail($ids);
         $incoming->total_price_incoming -= $price;
         $incoming->save();
+
+        $item = Item::findOrFail($item);
+        $item->stock -= $stock;
+        $item->save();
 
         $detailincomin = DetailIncoming::destroy($id);
         return back();

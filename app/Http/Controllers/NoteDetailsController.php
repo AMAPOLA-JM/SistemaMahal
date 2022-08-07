@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use App\Models\NoteDetail;
+use App\Models\NoteSale;
+use App\Models\Item;
+use Auth;
 
 class NoteDetailsController extends Controller
 {
@@ -34,7 +39,18 @@ class NoteDetailsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item = Item::findOrFail($request->id_item);
+        $item->stock -= $request->quantity_note_detail;
+        $item->save();
+
+        $notesale = NoteSale::findOrFail($request->id_note_sale);
+        $notesale->total_import_note += $request->total_price_note_detail;
+        $notesale->save();
+
+        $notedetail = new NoteDetail;
+        $notedetail->fill($request->all());
+        $notedetail->save();
+        return back();
     }
 
     /**

@@ -98,7 +98,7 @@
                     <div class="form">
                         <form class="" action="{{route('detnotesale.store')}}" method="post">
                             <div class="row">
-                                <input type="hidden" name="id_incoming" value="{{$id}}">
+                                <input type="hidden" name="id_note_sale" value="{{$id}}">
                                 <div class="col-sm-4 ">
                                     <div class="row">
                                         <div class="col-sm-12">
