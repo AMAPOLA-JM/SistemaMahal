@@ -53,11 +53,11 @@
                         <td>{{$item->name_item}}</td>
                         <td>{{$item->size_item}}</td>
                         <td>{{$item->stock}}</td>
-                        <td>{{$item->unit_price_item}}</td>
-                        <td>{{$item->wholesale_price_item}}</td>
+                        <td class="col-1">S/ {{$item->unit_price_item}}</td>
+                        <td class="col-1">S/ {{$item->wholesale_price_item}}</td>
                         <td class="col-4">{{$item->description_item}}</td>
                         @if (auth()->user()->type_user == 0)
-                        <td class="text-right col-1"><a class="btn btn-primary" href="#" role="button">Editar</a></td>
+                        <td class="text-right col-1"><a class="btn btn-primary" href="{{route('items.edit', ['id' => $item->id_item])}}" role="button">Editar</a></td>
                         <td class="text-right col-1"><a class="btn btn-danger" href="{{route('items.destroy', ['id' => $item->id_item])}}" role="button">Eliminar</a></td>
                         @endif
                     </tr>

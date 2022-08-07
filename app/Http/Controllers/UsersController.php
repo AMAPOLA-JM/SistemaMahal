@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use DB;
+use App\Models\User;
 
 class UsersController extends Controller
 {
@@ -13,7 +16,11 @@ class UsersController extends Controller
      */
     public function index()
     {
-        //
+        $users = DB::table('users')
+            ->select('id', 'name', 'surname_user', 'dni_user', 'email', 'type_user', 'state_user')
+            ->get();
+
+        return view('settings.settings')->with('users', $users);
     }
 
     /**
@@ -23,7 +30,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return  view('settings.nuevo');
     }
 
     /**
@@ -34,7 +41,12 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User;
+        $user->fill($request->all());
+        $user->password = bcrypt($request->password);
+        $user->state_user = 0;
+        $user->save();
+        return redirect('/settings');
     }
 
     /**
@@ -56,7 +68,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('settings.edit')->with('user', $user);
     }
 
     /**
@@ -66,9 +79,43 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $user = User::findOrFail($request->id);
+        $user->name = $request->name;
+        $user->surname_user = $request->surname_user;
+        $user->dni_user = $request->dni_user;
+        $user->email = $request->email;
+        $request->password = bcrypt($request->password);
+        if (auth()->user()->type_user == 0) {
+            $user->type_user = $request->type_user;
+            if ($request->password != "") {
+                $user->password = $request->password;
+            }
+        }
+        $user->save();
+        return redirect('/settings');
+    }
+
+    public function updatepass(Request $request){
+        $pass = auth()->user()->password;
+        $error = "";
+        if (password_verify($request->actpassword, $pass)) {
+            if ($request->password == $request->reppassword) {
+                $request->password = bcrypt($request->password);
+                $user = User::findOrFail(auth()->user()->id);
+                $user->password = $request->password;
+                $user->save();
+                $error = "Contraseña Cambiada Satisfactoriamente";
+                return view('settings.changePass')->with('error', $error);
+            }else {
+                $error = "No coinciden las contraseñas";
+                return view('settings.changePass')->with('error', $error);
+            }
+        } else {
+            $error = "Contraseña actual incorrecta";
+            return view('settings.changePass')->with('error', $error);
+        }
     }
 
     /**
@@ -79,8 +126,9 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::destroy($id);
+        return back();
     }
 
-    
+
 }

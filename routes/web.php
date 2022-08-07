@@ -45,6 +45,8 @@ Route::group([], function(){ //group for items
     Route::get('items/nuevo', [ItemsController::class, 'create'])->name('items.create')->middleware('auth');
     Route::get('items/destroy/{id}', [ItemsController::class, 'destroy'])->name('items.destroy')->middleware('auth');
     Route::post('items/store', [ItemsController::class, 'store'])->name('items.store')->middleware('auth');
+    Route::get('items/edit/{id}', [ItemsController::class, 'edit'])->name('items.edit')->middleware('auth');
+    Route::post('items/update', [ItemsController::class, 'update'])->name('items.update')->middleware('auth');
 });
 
 Route::group([], function(){ //group for clients
@@ -97,10 +99,14 @@ Route::group([], function(){ //group for incomings
     Route::post('categories/update', [CategoriesController::class, 'update'])->name('categories.update')->middleware('auth');
 });
 
-Route::group([], function(){ //group for incomings
-    Route::get('settings', function(){
-        return view('settings.settings');
-    })->name('settings.index')->middleware('auth');
+Route::group([], function(){ //group for users
+    Route::get('settings', [UsersController::class, 'index'])->name('settings.index')->middleware('auth');
+    Route::get('settings/nuevo', [UsersController::class, 'create'])->name('settings.create')->middleware('auth');
+    Route::get('settings/destroy/{id}', [UsersController::class, 'destroy'])->name('settings.destroy')->middleware('auth');
+    Route::get('settings/edit/{id}', [UsersController::class, 'edit'])->name('settings.edit')->middleware('auth');
+    Route::post('settings/store', [UsersController::class, 'store'])->name('settings.store')->middleware('auth');
+    Route::post('settings/update', [UsersController::class, 'update'])->name('settings.update')->middleware('auth');
+    Route::post('settings/updatep', [UsersController::class, 'updatepass'])->name('settings.updatep')->middleware('auth');
     Route::get('settings/pass', function(){
         return view('settings.changePass');
     })->name('settings.change.pass')->middleware('auth');

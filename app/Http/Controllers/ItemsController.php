@@ -75,7 +75,14 @@ class ItemsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Item::findOrFail($id);
+        $categories = DB::table('categories')
+            ->select('id_category', 'name_category')
+            ->get();
+        $brands = DB::table('brands')
+            ->select('id_brand', 'name_brand')
+            ->get();
+        return view('items.edit')->with(array('categories'=>$categories, 'brands'=>$brands, 'item'=>$item));
     }
 
     /**
@@ -85,9 +92,18 @@ class ItemsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $item = Item::findOrFail($request->id_item);
+        $item->id_category = $request->id_category;
+        $item->id_brand = $request->id_brand;
+        $item->name_item = $request->name_item;
+        $item->size_item = $request->size_item;
+        $item->unit_price_item = $request->unit_price_item;
+        $item->wholesale_price_item = $request->wholesale_price_item;
+        $item->description_item = $request->description_item;
+        $item->save();
+        return redirect('/items');
     }
 
     /**
