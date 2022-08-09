@@ -8,6 +8,7 @@ use DB;
 use App\Models\NoteSale;
 use App\Models\Client;
 use App\Models\Item;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class NoteSalesController extends Controller
 {
@@ -116,7 +117,9 @@ class NoteSalesController extends Controller
             ->select('items.id_item', 'items.name_item', 'items.size_item', 'brands.name_brand', 'items.stock')
             ->get();
 
-        return view('pdf.boleta')->with(array('notesales'=>$notesales, 'notedetail'=>$notedetail, 'id'=>$val, 'estado'=>$estado, 'items'=>$items, 'tipo'=>$tipo));
+
+        $pdf = Pdf::loadView('pdf.boleta', ['notesales'=>$notesales, 'notedetail'=>$notedetail, 'id'=>$val, 'estado'=>$estado, 'items'=>$items, 'tipo'=>$tipo]);
+        return $pdf->stream();
     }
 
     /**
