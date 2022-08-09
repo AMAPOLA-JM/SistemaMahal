@@ -37,12 +37,12 @@ Route::group([], function(){ //group for notesales
     Route::get('notesales/create', [NoteSalesController::class, 'create'])->name('notesales.create')->middleware('auth');
     Route::post('notesales/new', [NoteSalesController::class, 'new'])->name('notesales.new')->middleware('auth');
     Route::get('notesales/edit/{id}', [NoteSalesController::class, 'edit'])->name('notesales.edit')->middleware('auth');
-    Route::get('notesales/show/{id}', [NoteSalesController::class, 'show'])->name('notesales.show')->middleware('auth');
+    Route::get('notesales/show/{id}{error}', [NoteSalesController::class, 'show'])->name('notesales.show')->middleware('auth');
     Route::get('notesales/destroy/{id}', [NoteSalesController::class, 'destroy'])->name('notesales.destroy')->middleware('auth');
 });
 
 Route::group([], function(){ //group for details_incoming
-    //Route::get('detnotesale/destroy/{id}', [DetailsIncomingController::class, 'destroy'])->name('detnotesale.destroy')->middleware('auth');
+    Route::get('detnotesale/destroy/{id}', [NoteDetailsController::class, 'destroy'])->name('detnotesale.destroy')->middleware('auth');
     Route::post('detnotesale/store', [NoteDetailsController::class, 'store'])->name('detnotesale.store')->middleware('auth');
 });
 

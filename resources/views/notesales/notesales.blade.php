@@ -64,10 +64,10 @@
                         @endif
                         <td class="">S/ {{$notesale->total_import_note}}</td>
                         @if ($notesale->total_import_note == 0)
-                            <td class="text-right col-2"><a class="btn btn-success" href="{{route('notesales.show', ['id'=>$notesale->id_note_sale])}}" role="button"><i class="fa fa-eye"></i> Ver Detalles</a></td>
+                            <td class="text-right col-2"><a class="btn btn-success" href="{{route('notesales.show', ['id'=>$notesale->id_note_sale, 'error'=>1])}}" role="button"><i class="fa fa-eye"></i> Ver Detalles</a></td>
                             <td class="text-center col-1"><a class="btn btn-danger" href="{{route('notesales.destroy', ['id'=>$notesale->id_note_sale])}}" role="button">Eliminar</a></td>
                         @else
-                            <td class="text-center col-2" colspan="2"><a class="btn btn-success" href="{{route('notesales.show', ['id'=>$notesale->id_note_sale])}}" role="button"><i class="fa fa-eye"></i> Ver Detalles</a></td>
+                            <td class="text-center col-2" colspan="2"><a class="btn btn-success" href="{{route('notesales.show', ['id'=>$notesale->id_note_sale, 'error'=>1])}}" role="button"><i class="fa fa-eye"></i> Ver Detalles</a></td>
                         @endif
                     </tr>
                     @endforeach

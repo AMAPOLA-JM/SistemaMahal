@@ -44,7 +44,7 @@
                             <label for="type_note_sale">Tipo de Venta</label>
                             <select class="form-control" name="type_note_sale" id="type_note_sale" required>
                                 <option value="0">Venta por Menor</option>
-                                <option value="1">Venta por Mayor</option>
+                                <option value="1" selected>Venta por Mayor</option>
                             </select>
                         </div>
                         @csrf

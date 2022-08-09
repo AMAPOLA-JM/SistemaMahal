@@ -18,7 +18,7 @@ class UserFactory extends Factory
             'name' => $this->faker->firstName(),
             'surname_user' => $this->faker->lastName()." ".$this->faker->lastName(),
             'dni_user' => $this->faker->numberBetween(10000000, 99999999),
-            'email' => $this->faker->unique()->safeEmail(),
+            'email' => "raulmanu.27.03.2001@gmail.com",//$this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => bcrypt('julissa'),
             'type_user' => $this->faker->numberBetween(0, 1),

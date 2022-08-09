@@ -96,10 +96,16 @@
                 </div>
                 <div class="card-body">
                     <div class="form">
+                        @if ($error == 2)
+                            <div class="alert alert-danger" role="alert">
+                                <b>Revisar la Cantidad en Almacén</b>
+                            </div>
+                        @endif
                         <form class="" action="{{route('detnotesale.store')}}" method="post">
                             <div class="row">
                                 <input type="hidden" name="id_note_sale" value="{{$id}}">
-                                <div class="col-sm-4 ">
+                                <input type="hidden" name="type_note_sale" value="{{$tipo}}">
+                                <div class="col-sm-6 ">
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="row">
@@ -113,7 +119,7 @@
                                                         <div class="form-control">
                                                         <x-adminlte-select2 class="" name="id_item" id="id_item" required>
                                                             @foreach ($items as $item)
-                                                            <option value="{{$item->id_item}}">{{$item->name_item}} de {{$item->name_brand}} Talla {{$item->size_item}}</option>
+                                                            <option value="{{$item->id_item}}">{{$item->name_item}} Marca {{$item->name_brand}} Talla {{$item->size_item}} Stock: {{$item->stock}}</option>
                                                             @endforeach
                                                         </x-adminlte-select2>
                                                         </div>
@@ -123,7 +129,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="row">
@@ -135,24 +141,6 @@
                                                 <div class="col-sm-9">
                                                     <div class="form-group">
                                                         <input class="form-control" type="number" id="quantity_note_detail" name="quantity_note_detail" value="" required>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="row">
-                                        <div class="col-sm-12">
-                                            <div class="row">
-                                                <div class="col-sm-4">
-                                                    <div class="form-group">
-                                                        <label for="total_price_note_detail">Monto Total:</label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-8">
-                                                    <div class="form-group">
-                                                        <input class="form-control" type="text" id="total_price_note_detail" name="total_price_note_detail" value="" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -191,17 +179,25 @@
                                 <th>Prenda</th>
                                 <th>Cantidad</th>
                                 <th>Precio Unitario</th>
-                                <th>Precio Total</th>
+                                <th>Marca</th>
+                                <th class="col-2">Precio Total</th>
+                                <th>Acción</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($notedetail as $note)
                                 <tr>
                                     <td>{{$note->id_note_detail}}</td>
-                                    <td>{{$note->name_item}} {{$note->size_item}}</td>
+                                    <td>{{$note->name_item}} Talla: {{$note->size_item}}</td>
                                     <td>{{$note->quantity_note_detail}}</td>
-                                    <td>S/ {{$note->unit_price_item}}</td>
+                                    @if ($tipo == 0)
+                                        <td>S/ {{$note->unit_price_item}}</td>
+                                    @else
+                                        <td>S/ {{$note->wholesale_price_item}}</td>
+                                    @endif
+                                    <td>{{$note->name_brand}}</td>
                                     <td>S/ {{$note->total_price_note_detail}}</td>
+                                    <td class="text-center col-1"><a class="btn btn-danger" href="{{route('detnotesale.destroy', ['id'=>$note->id_note_detail])}}" role="button">Eliminar</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

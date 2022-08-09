@@ -31,7 +31,7 @@ class NoteSalesController extends Controller
                 ->join('clients', 'clients.id_client', '=', 'note_sales.id_client')
                 ->join('users', 'users.id', '=', 'note_sales.id_user')
                 ->select('id_note_sale', 'name_client', 'surname_client', 'name', 'date_note', 'state_note', 'total_import_note')
-                ->where('id_user', '=', Auth::user()->type_user)
+                ->where('id_user', '=', Auth::user()->id)
                 ->orderByDesc('id_note_sale')
                 ->limit(100)
                 ->get();
@@ -64,7 +64,18 @@ class NoteSalesController extends Controller
         $notesale->type_note_sale = $request->type_note_sale;
         $notesale->save();
 
-        return redirect('/notesales');
+        $notesales = DB::table('note_sales')
+            ->select('id_note_sale')
+            ->where('id_user', Auth::user()->id)
+            ->orderByDesc('id_note_sale')
+            ->limit(1)
+            ->get();
+
+        foreach ($notesales as $notesal) {
+            $id = $notesal->id_note_sale;
+        }
+
+        return redirect('/notesales/show/'.$id.'1');
     }
 
     /**
@@ -84,7 +95,7 @@ class NoteSalesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $error)
     {
         $notesales = DB::table('note_sales')
             ->join('clients', 'clients.id_client', '=', 'note_sales.id_client')
@@ -101,16 +112,18 @@ class NoteSalesController extends Controller
 
         $notedetail = DB::table('note_details')
             ->join('items', 'items.id_item', '=', 'note_details.id_item')
-            ->select('id_note_detail', 'name_item', 'size_item', 'unit_price_item', 'quantity_note_detail', 'total_price_note_detail')
+            ->join('brands', 'brands.id_brand', '=', 'items.id_brand')
+            ->select('id_note_detail', 'name_item', 'size_item', 'unit_price_item', 'wholesale_price_item', 'name_brand', 'quantity_note_detail', 'total_price_note_detail')
             ->where('id_note_sale', '=', $id)
+            ->orderByDesc('id_note_detail')
             ->get();
 
         $items = DB::table('items')
             ->join('brands', 'items.id_brand', '=', 'brands.id_brand')
-            ->select('items.id_item', 'items.name_item', 'items.size_item', 'brands.name_brand')
+            ->select('items.id_item', 'items.name_item', 'items.size_item', 'brands.name_brand', 'items.stock')
             ->get();
 
-        return view('notesales.show')->with(array('notesales'=>$notesales, 'notedetail'=>$notedetail, 'id'=>$val, 'estado'=>$estado, 'items'=>$items, 'tipo'=>$tipo));
+        return view('notesales.show')->with(array('notesales'=>$notesales, 'notedetail'=>$notedetail, 'id'=>$val, 'estado'=>$estado, 'items'=>$items, 'tipo'=>$tipo, 'error'=>$error));
     }
 
     /**
