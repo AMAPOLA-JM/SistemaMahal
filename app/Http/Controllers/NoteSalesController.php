@@ -88,9 +88,35 @@ class NoteSalesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function pdf($id)
     {
-        //
+        $notesales = DB::table('note_sales')
+            ->join('clients', 'clients.id_client', '=', 'note_sales.id_client')
+            ->join('users', 'users.id', '=', 'note_sales.id_user')
+            ->select('id_note_sale', 'dni_client', 'name_client', 'surname_client', 'tel_client', 'name', 'date_note', 'state_note', 'total_import_note', 'type_note_sale')
+            ->where('id_note_sale', '=', $id)
+            ->get();
+
+        foreach ($notesales as $notesale) {
+            $val = $notesale->id_note_sale;
+            $estado = $notesale->state_note;
+            $tipo = $notesale->type_note_sale;
+        }
+
+        $notedetail = DB::table('note_details')
+            ->join('items', 'items.id_item', '=', 'note_details.id_item')
+            ->join('brands', 'brands.id_brand', '=', 'items.id_brand')
+            ->select('id_note_detail', 'name_item', 'size_item', 'unit_price_item', 'wholesale_price_item', 'name_brand', 'quantity_note_detail', 'total_price_note_detail')
+            ->where('id_note_sale', '=', $id)
+            ->orderByDesc('id_note_detail')
+            ->get();
+
+        $items = DB::table('items')
+            ->join('brands', 'items.id_brand', '=', 'brands.id_brand')
+            ->select('items.id_item', 'items.name_item', 'items.size_item', 'brands.name_brand', 'items.stock')
+            ->get();
+
+        return view('pdf.boleta')->with(array('notesales'=>$notesales, 'notedetail'=>$notedetail, 'id'=>$val, 'estado'=>$estado, 'items'=>$items, 'tipo'=>$tipo));
     }
 
     /**
