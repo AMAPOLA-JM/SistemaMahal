@@ -29,7 +29,7 @@
                             <div class="form-group">
                                 <label for="id_category">Categoría</label>
                                 <div class="row">
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-9 mb-1">
                                         <select class="form-control select2" name="id_category" id="id_category" required>
                                             @foreach ($categories as $categorie)
                                             <option value="{{$categorie->id_category}}" @if ($categorie->id_category == $item->id_category)
@@ -60,7 +60,7 @@
                             <div class="form-group">
                                 <label for="id_brand">Marca</label>
                                 <div class="row">
-                                    <div class="col-sm-9">
+                                    <div class="col-sm-9 mb-1">
                                         <select class="form-control select2" name="id_brand" id="id_brand" required>
                                             @foreach ($brands as $brand)
                                             <option value="{{$brand->id_brand}}" @if ($brand->id_brand == $item->id_brand)

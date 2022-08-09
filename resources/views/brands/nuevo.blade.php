@@ -24,11 +24,18 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="id_supplier">Proveedor</label>
-                        <select class="form-control" name="id_supplier" id="id_supplier" required>
-                            @foreach ($suppliers as $supplier)
-                                <option value="{{$supplier->id_supplier}}">{{$supplier->name_supplier}}</option>
-                            @endforeach
-                        </select>
+                        <div class="row">
+                            <div class="col-sm-10 mb-1">
+                                <select class="form-control" name="id_supplier" id="id_supplier" required>
+                                    @foreach ($suppliers as $supplier)
+                                        <option value="{{$supplier->id_supplier}}">{{$supplier->name_supplier}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-sm-2">
+                                <a class="btn btn-outline-success" style="width:100%;" href="{{route('suppliers.create')}}" role="button">Nuevo Proveedor</a>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="name_brand">Marca</label>

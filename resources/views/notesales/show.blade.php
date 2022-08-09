@@ -10,8 +10,8 @@
     </div>
     <div class="col-sm-2">
         <div class="input-group input-group-sm">
-            <div class="col-sm-12">
-                <a class="btn btn-success disabled" style="width:100%;" href="{{route('notesales.index')}}" role="button">Retroceder</a>
+            <div class="col-sm-12 mb-1">
+                <a class="btn btn-success" style="width:100%;" href="{{route('notesales.update', ['id'=>$id])}}" role="button">Cobrar y Entregar </a>
             </div>
         </div>
     </div>
@@ -32,6 +32,7 @@
                 <i class="fas fa-detail"> Codigo de Venta: {{$id}}
                 </i>
                 <div class="card-tools">
+                    <a class="btn btn-success " href=""> Ver Boleta</a> &nbsp;&nbsp;&nbsp;
                     @if ($estado == 2)
                         <a class="btn btn-danger text-center" href="{{route('notesales.edit', ['id'=>$id])}}"> Pagar</a>
                     @elseif($estado == 1)
@@ -181,7 +182,9 @@
                                 <th>Precio Unitario</th>
                                 <th>Marca</th>
                                 <th class="col-2">Precio Total</th>
-                                <th>Acción</th>
+                                @if ($estado == 2)
+                                    <th>Acción</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -197,7 +200,9 @@
                                     @endif
                                     <td>{{$note->name_brand}}</td>
                                     <td>S/ {{$note->total_price_note_detail}}</td>
+                                    @if ($estado == 2)
                                     <td class="text-center col-1"><a class="btn btn-danger" href="{{route('detnotesale.destroy', ['id'=>$note->id_note_detail])}}" role="button">Eliminar</a></td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>

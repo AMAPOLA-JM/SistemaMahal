@@ -26,7 +26,7 @@
                         <div class="form-group">
                             <label for="id_client">Cliente</label>
                             <div class="row">
-                                <div class="col-sm-9">
+                                <div class="col-sm-9 mb-1">
                                     <div class="form-control">
                                         <x-adminlte-select2 class="" name="id_client" id="id_client" required>
                                             @foreach ($clients as $client)
