@@ -40,7 +40,10 @@ Route::group([], function(){ //group for notesales
     Route::get('notesales/show/{id}{error}', [NoteSalesController::class, 'show'])->name('notesales.show')->middleware('auth');
     Route::get('notesales/destroy/{id}', [NoteSalesController::class, 'destroy'])->name('notesales.destroy')->middleware('auth');
     Route::get('notesales/update/{id}', [NoteSalesController::class, 'update'])->name('notesales.update')->middleware('auth');
+<<<<<<< HEAD
     Route::get('notesales/pdf/{id}', [NoteSalesController::class, 'pdf'])->name('notesales.pdf')->middleware('auth');
+=======
+>>>>>>> 520d039084e2608ae5b8a219553fc2a44235fc40
 });
 
 Route::group([], function(){ //group for details_incoming

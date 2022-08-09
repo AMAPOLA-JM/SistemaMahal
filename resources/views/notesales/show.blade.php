@@ -11,9 +11,13 @@
     <div class="col-sm-2">
         <div class="input-group input-group-sm">
             <div class="col-sm-12 mb-1">
+<<<<<<< HEAD
                 <a class="btn btn-success @if ($estado == 0)
                     disabled
                 @endif " style="width:100%;" href="{{route('notesales.update', ['id'=>$id])}}" role="button">Cobrar y Entregar </a>
+=======
+                <a class="btn btn-success" style="width:100%;" href="{{route('notesales.update', ['id'=>$id])}}" role="button">Cobrar y Entregar </a>
+>>>>>>> 520d039084e2608ae5b8a219553fc2a44235fc40
             </div>
         </div>
     </div>
@@ -34,7 +38,11 @@
                 <i class="fas fa-detail"> Codigo de Venta: {{$id}}
                 </i>
                 <div class="card-tools">
+<<<<<<< HEAD
                     <a class="btn btn-success " href="{{route('notesales.pdf', ['id'=>$id])}}" target="_blank"> Ver Boleta</a> &nbsp;&nbsp;&nbsp;
+=======
+                    <a class="btn btn-success " href=""> Ver Boleta</a> &nbsp;&nbsp;&nbsp;
+>>>>>>> 520d039084e2608ae5b8a219553fc2a44235fc40
                     @if ($estado == 2)
                         <a class="btn btn-danger text-center" href="{{route('notesales.edit', ['id'=>$id])}}"> Pagar</a>
                     @elseif($estado == 1)
