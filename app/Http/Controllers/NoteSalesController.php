@@ -75,6 +75,10 @@ class NoteSalesController extends Controller
             $id = $notesal->id_note_sale;
         }
 
+        $compra = Client::findOrFail($notesale->id_client);
+        $compra->buys_client += 1;
+        $compra->save();
+
         return redirect('/notesales/show/'.$id.'1');
     }
 
@@ -147,9 +151,12 @@ class NoteSalesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $notesale = NoteSale::findOrFail($id);
+        $notesale->state_note = 0;
+        $notesale->save();
+        return back();
     }
 
     /**
@@ -160,6 +167,12 @@ class NoteSalesController extends Controller
      */
     public function destroy($id)
     {
+        $notesale = NoteSale::findOrFail($id);
+        $id_client = $notesale->id_client;
+        $compra = Client::findOrFail($notesale->id_client);
+        $compra->buys_client -= 1;
+        $compra->save();
+
         $notesale = NoteSale::destroy($id);
         return back();
     }

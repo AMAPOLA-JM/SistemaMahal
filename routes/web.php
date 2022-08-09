@@ -39,6 +39,7 @@ Route::group([], function(){ //group for notesales
     Route::get('notesales/edit/{id}', [NoteSalesController::class, 'edit'])->name('notesales.edit')->middleware('auth');
     Route::get('notesales/show/{id}{error}', [NoteSalesController::class, 'show'])->name('notesales.show')->middleware('auth');
     Route::get('notesales/destroy/{id}', [NoteSalesController::class, 'destroy'])->name('notesales.destroy')->middleware('auth');
+    Route::get('notesales/update/{id}', [NoteSalesController::class, 'update'])->name('notesales.update')->middleware('auth');
 });
 
 Route::group([], function(){ //group for details_incoming
